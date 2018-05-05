@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Example 1.10</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="app">
+	<h2>Male Cats</h2>
+	<ul>
+		<li v-for="cat in maleCats">{{cat.name}}</li>
+	</ul>
+
+	<h2>Female Cats</h2>
+	<ul>
+		<li v-for="cat in femaleCats">{{cat.name}}</li>
+	</ul>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+new Vue({
+	el:'#app',
+	data:{
+		cats:[
+			{"name":"Batman","gender":"male"},
+			{"name":"Wonder Woman","gender":"female"},
+			{"name":"Flash","gender":"male"},
+			{"name":"King Shark","gender":"male"},
+			{"name":"Scarlet Witch","gender":"female"},
+		]
+	},
+	computed:{
+		maleCats:function() {
+			return this.cats.filter(c => c.gender === 'male');
+		},
+		femaleCats:function() {
+			return this.cats.filter(function(cat) {
+				return cat.gender === 'female';
+			});
+		}
+	}
+});
+</script>
+</body>
+</html>

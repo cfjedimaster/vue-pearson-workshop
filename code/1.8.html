@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Example 1.8</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="app">
+	<button @click="rotate">New Picture</button><br/>
+	<img :src="dynSrc">
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+new Vue({
+	el:'#app',
+	data:{
+		index:0,
+		dynSrc:'img/cat1.png',
+		images:[
+			'img/cat1.png',
+			'img/cat2.jpg',
+			'img/cat3.jpg',
+			'img/plane1.jpg'
+		]
+	},
+	methods:{
+		rotate:function() {
+			this.index++;
+			if(this.index === this.images.length) this.index = 0;
+			this.dynSrc = this.images[this.index];
+		}
+	}
+});
+</script>
+</body>
+</html>

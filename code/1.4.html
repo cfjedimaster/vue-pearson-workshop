@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Example 1.4</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="app">
+	My name is {{name}}.
+	<span v-show="age > 40">
+		I remember floppies!
+	</span>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+new Vue({
+	el:'#app',
+	data:{
+		name:'Ray',
+		age:5
+	}
+});
+</script>
+</body>
+</html>

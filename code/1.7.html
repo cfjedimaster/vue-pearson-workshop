@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Example 1.7</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="app">
+	<p>
+	<button v-on:click="doClick">Click Me</button><br/>
+	You've click {{clicked}} times.
+	</p>
+
+	<p>
+		<img src="img/cat1.png" @mouseover="meowOn" @mouseleave="meowOff">
+		<h2 v-if="meow">MEOW</h2>
+	</p>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+new Vue({
+	el:'#app',
+	data:{
+		clicked:0,
+		meow:false
+	},
+	methods:{
+		doClick:function() {
+			this.clicked++;
+		},
+		meowOn:function() {
+			this.meow=true;
+		},
+		meowOff:function() {
+			this.meow=false;
+		}
+	}
+});
+</script>
+</body>
+</html>

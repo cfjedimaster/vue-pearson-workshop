@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Example 1.3</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="app">
+	<p>
+	My name is {{name}}.
+	</p>
+	<p v-if="age > 40">
+		I remember floppies!
+	</p><p v-else>
+		What's a floppy?
+	</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+new Vue({
+	el:'#app',
+	data:{
+		name:'Ray',
+		age:45
+	}
+});
+</script>
+</body>
+</html>
