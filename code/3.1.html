@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Example 3.1</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="app">
+
+	<h1>Routing Demo</h1>
+
+	<p>
+		<router-link to="/cat">Show a Cat</router-link>
+		<router-link to="/plane">Show a Plane</router-link>
+	</p>
+
+	<router-view></router-view>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script>
+
+<script>
+const Cat = Vue.component('cat', {
+	template:`
+<img src="img/cat1.png">
+	`
+});
+
+const Plane = Vue.component('plane', {
+	template:`
+<img src="img/plane1.jpg">
+	`
+});
+
+const routes = [ 
+	{ path:'/cat', component:Cat},
+	{ path:'/plane', component:Plane},
+];
+
+const router = new VueRouter({ routes });
+
+new Vue({
+	el:'#app',
+	router,
+	data:{
+	}
+});
+</script>
+</body>
+</html>
