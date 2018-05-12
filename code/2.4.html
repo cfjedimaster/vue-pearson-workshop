@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Example 2.4</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="app">
+	<h1>Testing Components</h1>
+	<cat title="Random Picture of Cat">
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+Vue.component('cat', {
+	data:function() {
+		return {
+		}
+	},
+	props:{
+	},
+	computed:{
+		cat:function() {
+			let cats = ["cat1.png","cat2.jpg","cat3.jpg"];
+			let chosen = cats[Math.floor(Math.random() * cats.length)];
+			return "img/"+chosen;
+		}
+	},
+	template:`
+<img :src="cat" />
+	`
+});
+
+new Vue({
+	el:'#app',
+	data:{
+	}
+});
+</script>
+</body>
+</html>
