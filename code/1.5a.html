@@ -11,10 +11,11 @@
 <div id="app">
 	My name is {{name}} and I like:
 	<ul>
-		<li v-for="thing in things">
-			{{thing}}
+		<li v-for="(thing, index) in things">
+			{{index}}: {{thing}}
 		</li>
 	</ul>
+	<!-- Remind folks about ol :) -->
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
