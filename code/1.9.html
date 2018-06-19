@@ -9,18 +9,16 @@
 <body>
 
 <div id="app">
-	<h2>Male Cats</h2>
-	<ul>
-		<li v-for="cat in cats"
-			v-if="cat.gender === 'male'">{{cat.name}}</li>
-	</ul>
 
-	<h2>Female Cats</h2>
-	<ul>
-		<li v-for="cat in cats"
-			v-if="cat.gender === 'female'">{{cat.name}}</li>
-	</ul>
+	<h2>Without Computed</h2>
+	<p>
+		Your name is {{firstname + ' ' + lastname}}.
+	</p>
 
+	<h2>With Computed</h2>
+	<p>
+		Your name is {{name}}.
+	</p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -28,13 +26,13 @@
 new Vue({
 	el:'#app',
 	data:{
-		cats:[
-			{"name":"Batman","gender":"male"},
-			{"name":"Wonder Woman","gender":"female"},
-			{"name":"Flash","gender":"male"},
-			{"name":"King Shark","gender":"male"},
-			{"name":"Scarlet Witch","gender":"female"},
-		]
+		firstname:"Raymond",
+		lastname:"Camden"
+	},
+	computed:{
+		name:function() {
+			return this.firstname + ' ' + this.lastname;
+		}
 	}
 });
 </script>
