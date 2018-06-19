@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Example 4.3</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="app">
+
+	<h1>Vuex Demo</h1>
+
+	<p>
+		<input v-model="location" placeholder="Location"> <button @click="getWeather">Load Weather</button>
+	</p>
+
+	<p v-if="hasWeather">
+		The weather for {{location}} is {{weather}}.
+	</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex@3.0.1/dist/vuex.js"></script>
+
+<script>
+const store = new Vuex.Store({
+	state:{
+		locations:{
+		},
+		weather:''
+	},
+	mutations:{
+		setCache:function(state, location) {
+			state.locations[location.name] = location.weather;
+		},
+		setWeather:function(state, weather) {
+			state.weather = weather;
+		}
+	},
+	actions:{
+		getWeather(context, location) {
+			if(context.state.locations[location]) {
+				console.log('i had a cache for '+location);
+				context.commit('setWeather', context.state.locations[location]);
+			} else {
+				//clear current weather
+				context.commit('setWeather', '');
+				console.log('i need to look up '+location);
+				fetch(`http://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(location)}&apikey=002041a8430f6bf9b3ec61dbaf581800`)
+				.then(res => res.json())
+				.then(res => {
+					console.log(res);
+					let weather = res.weather[0].description;
+					context.commit('setCache', {name:location, weather:weather});
+					context.commit('setWeather', weather);
+				});
+			}
+		}
+	}
+});
+
+new Vue({
+	el:'#app',
+	store:store,
+	data:{
+		location:''
+	},
+	computed:{
+		weather:function() {
+			return store.state.weather;
+		},
+		hasWeather:function() {
+			return store.state.weather !== '';
+		}
+	},
+	methods:{
+		getWeather:function() {
+			if(this.location === '') return;
+			store.dispatch('getWeather', this.location);
+		}
+	}
+});
+</script>
+</body>
+</html>

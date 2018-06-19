@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Example 4.2</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="app">
+
+	<h1>Vuex Demo</h1>
+
+	Hello, your awesomeness level is: {{awesomeness}}.
+	And here are the cats:
+	<ul>
+		<li v-for="cat in cats">{{cat.name}}</li>
+	</ul>
+
+	<p>
+		<button @click="lessCool">Reduce Awesomeness</button>
+	</p>
+
+	<p>
+		<input type="text" v-model="cat"> <button @click="addCat">Add Cat</button>
+	</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex@3.0.1/dist/vuex.js"></script>
+
+<script>
+const store = new Vuex.Store({
+	state:{
+		awesomeness:1,
+		animals:[
+			{type:"cat",name:"fred"},
+			{type:"cat",name:"ginger"},
+			{type:"cat",name:"nancy"},
+			{type:"dog",name:"boris"}
+		]
+	},
+	getters:{
+		cats:function(state) {
+			return state.animals.filter(a => a.type === 'cat');
+		}
+	},
+	mutations:{
+		reduceAwesomeness:function(state) {
+			state.awesomeness--;
+		},
+		newCat:function(state, name) {
+			state.animals.push({type:'cat',name:name});
+		}
+	}
+});
+
+new Vue({
+	el:'#app',
+	store:store,
+	data:{
+		cat:''
+	},
+	computed:{
+		awesomeness:function() {
+			return store.state.awesomeness;
+		},
+		cats:function() {
+			return store.getters.cats;
+		}
+	},
+	methods:{
+		lessCool:function() {
+			store.commit('reduceAwesomeness');
+		},
+		addCat:function() {
+			if(this.cat === '') return;
+			store.commit('newCat', this.cat);
+			this.cat = '';
+		}
+	}
+});
+</script>
+</body>
+</html>
