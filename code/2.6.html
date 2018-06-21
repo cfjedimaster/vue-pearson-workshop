@@ -9,26 +9,33 @@
 <body>
 
 <div id="app">
-	<quote :author="name">
-		<div slot="text">
-			Four score and seven years ago, blah blah blah.
-		</div>
-	</quote>
+	<cat>
+		My cat brings all the dogs to the yard.
+	</cat>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <script>
-Vue.component('quote', {
+Vue.component('cat', {
 	data:function() {
 		return {
 		}
 	},
-	props:["author"],
+	props:{
+	},
+	computed:{
+		cat:function() {
+			let cats = ["cat1.png","cat2.jpg","cat3.jpg"];
+			let chosen = cats[Math.floor(Math.random() * cats.length)];
+			return "img/"+chosen;
+		}
+	},
 	template:`
-<blockquote :cite="author">
-	<slot name="text">No text was provided.</slot>
-</blockquote>
+<div>
+<img :src="cat" @click="$emit('clickevent',{name:cat})" /><br/>
+<slot>This is my cat. There are many like it, but this one is mine.</slot>
+</div>
 	`
 });
 
