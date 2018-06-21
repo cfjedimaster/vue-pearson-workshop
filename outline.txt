@@ -6,6 +6,8 @@ Segment 1: Beginning Vue.js (65 min total)
     Exercise 2 – Ajax Search (10 min)
     Break+Q/A (10 min) (RAY CHANGE)
 
+END 12:05PM
+
 Segment 2: Building Components (45 min total)
 
     What are components? (5 min)
@@ -14,11 +16,15 @@ Segment 2: Building Components (45 min total)
     Exercise 1 – Music Component (10 min)
     Break+Q/A (10 min)
 
+END 12:50PM
+
 Segment 3: Routing (25 min)
 
     Working with Routing (10 min)
     Exercise 1 – Master/Detail (10 min)
     Q/A (5 min)
+
+END: 1:15PM
 
 Segment 4: State Management with Vuex (40 min)
 
