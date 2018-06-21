@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Example 3.2</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="app">
+
+	<div v-for="cat in cats" :key="cat.id">
+		<router-link :to="{ name:'cat', params:{id:cat.id, cat:cat} }">{{ cat.name }}</router-link>
+	</div>
+
+	<router-view></router-view>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script>
+
+<script>
+const Cat = Vue.component('cat', {
+	props:['cat'],
+	template:`
+	<p>
+	I am {{cat.name}} and I am {{$route.params.cat.gender}}.
+	</p>
+	`
+});
+
+const routes = [ 
+	{ path:'/cat/:id', name:'cat', component:Cat, props:true}
+];
+
+const router = new VueRouter({ routes });
+
+new Vue({
+	el:'#app',
+	router,
+	data:{
+		cats:[
+			{"id":1,"name":"Batman","gender":"male"},
+			{"id":2,"name":"Wonder Woman","gender":"female"},
+			{"id":3,"name":"Flash","gender":"male"},
+			{"id":4,"name":"King Shark","gender":"male"},
+			{"id":5,"name":"Scarlet Witch","gender":"female"},
+		]
+	}
+});
+</script>
+</body>
+</html>

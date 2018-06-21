@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Exercise 4.1</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+	[v-cloak] {display: none}
+	.delete {
+		color:red;
+		cursor: pointer;
+	}
+	</style>
+</head>
+<body>
+
+<div id="app" v-cloak>
+	<h2>Cats</h2>
+	<ul>
+		<li v-for="cat in cats" :key="cat.id">{{cat.name}} 
+		<span class="delete" @click="deleteCat(cat.id)">[Delete]</span>
+		</li>
+	</ul>
+
+	<p>
+		<input type="text" v-model="newCat"> <button @click="addCat">Add Cat</button>
+	</p>
+
+</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vuex@3.0.1/dist/vuex.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>
