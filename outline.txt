@@ -24,7 +24,7 @@ Segment 3: Routing (25 min)
     Exercise 1 – Master/Detail (10 min)
     Q/A (5 min)
 
-END: 1:15PM
+END 1:15PM
 
 Segment 4: State Management with Vuex (40 min)
 
@@ -32,6 +32,8 @@ Segment 4: State Management with Vuex (40 min)
     Working with Stores (20 min)
     Exercise 1 – Cat Store demo (10 min)
     Break+Q/A (5 min)
+
+END 1:55PM
 
 Segment 5: Building Apps with the CLI (30 min)
 
